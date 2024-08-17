@@ -90,7 +90,7 @@ void student ::view_student_details(int w)
     struct tm *ti;
     time(&tt);
     ti = localtime(&tt);
-    time_t now = time(0);
+//    time_t now = time(0);
 //    struct tm *ltm = localtime(&now);
 
     fstream studentfile("student_details.txt", ios::in);

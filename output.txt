@@ -1,0 +1,209 @@
+------------------------------
+LIBRARY MANGEMENT SYSTEM
+------------------------------
+------------------------------
+Do u have an account? yes or no
+no
+------------------------------
+Type your New Username: 
+ayan
+------------------------------
+Type your New Password: 
+a2a2
+------------------------------
+
+Registered successfully
+------------------------------
+------------------------------
+enter the username: ayan
+------------------------------
+enter the password: 
+if you have forgot the password, type forget
+a2a2
+
+------------------------------
+You are now logged in
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+1
+
+------------------------------
+You cannot change your password at this moment
+Try to change when you login with same credentials the next time
+------------------------------
+------------------------------
+Username: ayan
+Password: a2a2
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+2
+------------------------------
+Username: ayan
+Password: a2a2
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+1
+
+------------------------------
+Enter the name of student to add: ayan
+Enter the student ID(only numbers): 11
+
+------------------------------
+
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+2
+------------------------------
+Processing....
+------------------------------
+
+------------------------------
+Enter the student ID: 11
+------------------------------
+1:Issue (check out) a book
+2:Return (check in) a book
+1
+------------------------------
+Enter the number books to be issued: 2
+------------------------------
+Issue Day, Date and Time is: 
+Day Month Date Time Year
+Sun Aug 18 03:08:53 2024
+------------------------------
+------------------------------
+Enter the name of book: aa
+------------------------------
+Enter the name of book: bb
+------------------------------
+Books issued
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+2
+------------------------------
+Processing....
+------------------------------
+
+------------------------------
+Enter the student ID: 11
+------------------------------
+1:Issue (check out) a book
+2:Return (check in) a book
+2
+------------------------------
+what do u want to remove in: 
+1: 11 aa 18/08/2024
+2: 11 bb 18/08/2024
+------------------------------
+2
+------------------------------
+Removed successfully
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+3
+------------------------------
+Enter the ID of student to view the details11
+
+
+------------------------------
+The entered ID is in line no.: 1
+Student name and ID: ayan 11
+------------------------------
+The list of checked out books under ID: 11
+11: 11 aa 18/08/2024
+------------------------------
+
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+4
+------------------------------
+Student name: ayan ---Student ID: 11
+------------------------------
+------------------------------
+1:Change password
+2:Display details
+3:Enter into 2nd portal
+4:Exit System
+------------------------------
+3
+------------------------------
+1:Add a student to database
+2:Edit the details of a student
+3:View the details of a particular student
+4:View all enrolled students for library books
+5:Exit System
+------------------------------
+5
+Program ended with exit code: 0
