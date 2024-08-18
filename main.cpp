@@ -16,6 +16,15 @@ int student_array[MAX];
 string choice;
 string line_username, line_password, lines, temp, temp1;
 
+// declaring all file paths
+string cppfile_path = "/Users/ayanmahajan/Downloads/Vs Code/Library-Management-System/";
+string inside_file_path = "Library-Management-System/Library-Management-system/Library-Management-System/";
+string common_path = cppfile_path + inside_file_path;
+string userfile_path = common_path + "user_file.txt";
+string passwordfile_path = common_path + "password_file.txt";
+string student_details_path = common_path + "student_details.txt";
+string book_list_path = common_path + "book.txt";
+
 
 class login
 {
@@ -70,7 +79,7 @@ void student ::add_student()
     cout << "Enter the student ID(only numbers): ";
     cin >> student_id;
     checkpoint();
-    fstream studentfile("student_details.txt", ios::app);
+    fstream studentfile(student_details_path, ios::app);
     studentfile << student_name << " ";
     studentfile << student_id << endl;
     student_array[current_pos] = student_id;
@@ -87,13 +96,15 @@ void student ::add_student()
 void student ::view_student_details(int w)
 {
     time_t tt;
+//    The time_t type in C++ is used to represent time in a system-independent way. It's typically used to store the number of seconds since the Unix epoch
+    
     struct tm *ti;
     time(&tt);
     ti = localtime(&tt);
 //    time_t now = time(0);
 //    struct tm *ltm = localtime(&now);
 
-    fstream studentfile("student_details.txt", ios::in);
+    fstream studentfile(student_details_path, ios::in);
 
     cout << endl;
     int y = 0;
@@ -108,34 +119,35 @@ void student ::view_student_details(int w)
     y = y + 1;
     if (y == current_pos + 1)
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Not found" << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
     }
     else
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "The entered ID is in line no.: " << y << endl;
-        fstream studentfile("student_details.txt", ios::in);
+        fstream studentfile(student_details_path, ios::in);
         int lineno = 0;
         do
         {
             if (lineno == y)
             {
                 cout << "Student name and ID: " << lines << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 break;
             }
             lineno++;
 
         } while (getline(studentfile, lines));
-        fstream file("book.txt", ios::in);
+        fstream file(book_list_path, ios::in);
         string str;
         cout << "The list of checked out books under ID: " << w << endl;
         while (getline(file, str))
         {
             smatch matches;
             regex reg2("([0-9]+)");
+//            sorta like string matching
             regex_search(str, matches, reg2);
             if (matches.str(1) == to_string(w))
             {
@@ -151,7 +163,7 @@ void student ::view_student_details(int w)
                 }
             }
         }
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << endl;
         file.close();
     }
@@ -162,7 +174,7 @@ int student ::edit_student()
 {
     cout << '\n';
     int id_temp;
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "Enter the student ID: ";
     cin >> id_temp;
     int i = 0;
@@ -171,7 +183,7 @@ int student ::edit_student()
         if (id_temp == student_array[i])
         {
             iterator3 = id_temp;
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "1:Issue (check out) a book" << endl;
             cout << "2:Return (check in) a book" << endl;
             book b;
@@ -191,9 +203,9 @@ int student ::edit_student()
             }
             default:
             {
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "Incorrect entry" << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 break;
             }
             }
@@ -206,9 +218,9 @@ int student ::edit_student()
         }
         if (i == MAX)
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "No student found" << endl;
-            cout << "------------------------------" << endl;
+            checkpoint();
         }
     }
 
@@ -219,8 +231,8 @@ int student ::edit_student()
 void book ::check_out()
 {
     string book;
-    fstream booklist("book.txt", ios::app | ios::out);
-    cout << "------------------------------" << endl;
+    fstream booklist(book_list_path, ios::app | ios::out);
+    checkpoint();
     cout << "Enter the number books to be issued: ";
     cin >> number;
     int i = 0;
@@ -229,11 +241,11 @@ void book ::check_out()
     struct tm *ti;
     time(&tt);
     ti = localtime(&tt);
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "Issue Day, Date and Time is: " << endl;
     cout << "Day Month Date Time Year" << endl;
     cout << asctime(ti);
-    cout << "------------------------------" << endl;
+    checkpoint();
     time_t now = time(0);
     struct tm *ltm = localtime(&now);
     int upload_temp;
@@ -246,25 +258,25 @@ void book ::check_out()
 
     while (i < number)
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Enter the name of book: ";
         getline(cin, book);
         booklist << iterator3 << " " << book << " " << upload << endl;
         i++;
     }
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "Books issued" << endl;
-    cout << "------------------------------" << endl;
+    checkpoint();
     booklist.close();
 }
 
 /// Printing all Students who have took membership
 void student ::list_all_students()
 {
-    cout << "------------------------------" << endl;
+    checkpoint();
     string alpha("");
     string num("");
-    fstream studentfile("student_details.txt", ios::in);
+    fstream studentfile(student_details_path, ios::in);
     string temp;
     while (getline(studentfile, temp))
     {
@@ -287,7 +299,7 @@ void student ::list_all_students()
         num = "";
         alpha = "";
     }
-    cout << "------------------------------" << endl;
+    checkpoint();
     studentfile.close();
 }
 
@@ -298,7 +310,7 @@ void book ::check_in()
     string str, ee[MAX];
     int h;
     int j = 0;
-    fstream file("book.txt", ios::in);
+    fstream file(book_list_path, ios::in);
     while (getline(file, str))
     {
         smatch matches;
@@ -321,19 +333,19 @@ void book ::check_in()
     file.close();
     if (j == 0)
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "No entry found in that ID" << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
     }
     else
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "what do u want to remove in: " << endl;
         for (int i = 0; i < j; i++)
         {
             cout << i + 1 << ": " << ee[i] << endl;
         }
-        cout << "------------------------------" << endl;
+        checkpoint();
         cin >> h;
         int i;
         int c = 0;
@@ -345,7 +357,7 @@ void book ::check_in()
             }
             else
             {
-                fstream f("book.txt", ios::in);
+                fstream f(book_list_path, ios::in);
                 fstream temp("temp.txt", ios::out);
                 while (getline(f, stri))
                 {
@@ -363,30 +375,33 @@ void book ::check_in()
 
         if (c == j)
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Not found" << '\n';
-            cout << "------------------------------" << endl;
+            checkpoint();
         }
         else
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Removed successfully" << '\n';
-            cout << "------------------------------" << endl;
+            checkpoint();
         }
     }
 }
 
 /// Initializing (the code that runs first of all)
+///  read student data from student details  file, extract integers from the file's content, and store those integers in an array called student_array. The function returns the final position in the array, which represents the number of valid entries processed.
 int student ::initialize()
 {
-    ifstream studentfile("student_details.txt");
+    ifstream studentfile(student_details_path);
     if (studentfile.is_open())
     {
         string lines;
         while (!studentfile.eof())
         {
             getline(studentfile, lines);
-            stringstream ss(lines);
+            stringstream ss(lines); 
+            // When you write stringstream ss(lines);, you are initializing a stringstream object ss with the content of the lines string
+//            initializes a stringstream object ss with the content of the lines string. This allows us to treat the line as a stream, making it easy to extract data from it.
             string tem;
             int fou;
             while (ss >> temp)
@@ -411,10 +426,11 @@ int student ::initialize()
 }
 
 /// Initializing (the code that runs first of all)
+/// read usernames from user file and passwords from passwords file ->  store them in separate arrays.
 int login ::initialize()
 {
-    fstream passfile("password_file.txt");
-    fstream userfile("user_file.txt");
+    fstream passfile(passwordfile_path);
+    fstream userfile(userfile_path);
 
     if (userfile.is_open())
     {
@@ -449,14 +465,14 @@ int login ::initialize()
     passfile.close();
 
     return i;
-    return j;
+//    return j;
 }
 
 /// Registering a user to control the whole system
 string login ::registeration()
 {
-    ifstream userfile("user_file.txt");
-    cout << "------------------------------" << endl;
+    ifstream userfile(userfile_path);
+    checkpoint();
     cout << "Do u have an account? yes or no" << endl;
     cin >> choice;
     if (choice == "yes")
@@ -466,7 +482,7 @@ string login ::registeration()
     }
     else if (choice == "no")
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Type your New Username: " << endl;
         cin.ignore();
         getline(cin, user);
@@ -479,28 +495,28 @@ string login ::registeration()
             }
         }
         userfile.close();
-        fstream passfile("password_file.txt", ios::app | ios::out);
-        fstream userfi("user_file.txt", ios::app | ios::out);
+        fstream passfile(passwordfile_path, ios::app | ios::out);
+        fstream userfi(userfile_path, ios::app | ios::out);
         if (iterator2 == 1)
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Same username existing in database\nPlease use another username to register" << endl;
-            cout << "------------------------------" << endl;
+            checkpoint();
             registeration();
         }
         else
         {
             userfi << user << endl;
             username[i] = user;
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Type your New Password: " << endl;
             getline(cin, pass);
             passfile << pass << endl;
             password[j] = pass;
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << endl
                  << "Registered successfully" << endl;
-            cout << "------------------------------" << endl;
+            checkpoint();
             check();
         }
         passfile.close();
@@ -508,10 +524,10 @@ string login ::registeration()
     }
     else
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Invalid Entry" << endl
              << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
         registeration();
     }
 
@@ -521,7 +537,7 @@ string login ::registeration()
 /// Check for the credentials while logging in
 int login ::check()
 {
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "enter the username: ";
     getline(cin, user);
     iterator1 = 0;
@@ -529,47 +545,47 @@ int login ::check()
     {
         if (user == username[iterator1])
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "enter the password: " << endl;
             cout << "if you have forgot the password, type forget" << endl;
             getline(cin, pass);
             if (pass == password[iterator1])
             {
                 cout << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "You are now logged in" << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 break;
             }
             else if (pass == "forget")
             {
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "enter the same username again" << endl;
                 getline(cin, temp1);
                 if (temp1 == username[iterator1])
                 {
                     cout << endl;
-                    cout << "------------------------------" << endl;
+                    checkpoint();
                     cout << "You are now logged in" << endl;
-                    cout << "------------------------------" << endl;
+                    checkpoint();
                     cout << endl;
                     pass = password[iterator1];
                     break;
                 }
                 else
                 {
-                    cout << "------------------------------" << endl;
+                    checkpoint();
                     cout << "Incorrect entry sorry" << endl;
-                    cout << "------------------------------" << endl;
+                    checkpoint();
                     _Exit(0);
                 }
 //                pass = password[iterator1];
             }
             else
             {
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "Incorrect password" << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 _Exit(0);
             }
         }
@@ -579,9 +595,9 @@ int login ::check()
 
     if (iterator1 == MAX)
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "User doesnt exist" << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
         exit();
     }
 
@@ -597,29 +613,30 @@ void login ::change_password()
     cin.ignore();
     if (iterator1 == i)
     {
-        cout << "------------------------------" << endl;
+//        cannot change password if you just created the account
+        checkpoint();
         cout << "You cannot change your password at this moment" << '\n';
         cout << "Try to change when you login with same credentials the next time" << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
     }
     else
     {
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Type your old password here: " << endl;
         getline(cin, temp);
         ofstream fileout("temp_file.txt");
-        ifstream filein("password_file.txt", ios::app);
+        ifstream filein(passwordfile_path, ios::app);
         if (temp != pass)
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "You have typed an incorrect password" << endl;
-            cout << "------------------------------" << endl;
+            checkpoint();
             filein.close();
             fileout.close();
         }
         else
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Type the new password" << endl;
             getline(cin, pass1);
             for (iterator2 = 0; iterator2 < j; iterator2++)
@@ -659,9 +676,9 @@ void login ::change_password()
             rename("temp_file.txt", "password_file.txt");
             pass = pass1;
         }
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "Password updated successfully" << endl;
-        cout << "------------------------------" << endl;
+        checkpoint();
     }
     display();
 }
@@ -669,10 +686,10 @@ void login ::change_password()
 /// Display the credentials
 void login ::display()
 {
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "Username: " << user << endl;
     cout << "Password: " << pass << endl;
-    cout << "------------------------------" << endl;
+    checkpoint();
 }
 
 /// Exit the portal
@@ -684,9 +701,9 @@ void login ::exit()
 /// Main function starts
 int main()
 {
-    cout << "------------------------------" << endl;
+    checkpoint();
     cout << "LIBRARY MANGEMENT SYSTEM" << endl;
-    cout << "------------------------------" << endl;
+    checkpoint();
 
     int choice, choice1;
     login l;
@@ -701,13 +718,13 @@ int main()
     while (true)
     {
         bool flag = true;
-        cout << "------------------------------" << endl;
+        checkpoint();
         cout << "1:Change password" << endl;
         cout << "2:Display details" << endl;
         cout << "3:Enter into 2nd portal" << endl;
         cout << "4:Exit System" << endl;
 
-        cout << "------------------------------" << endl;
+        checkpoint();
         cin >> choice;
         switch (choice)
         {
@@ -723,14 +740,14 @@ int main()
         }
         case 3:
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "1:Add a student to database" << endl;
             cout << "2:Edit the details of a student" << endl;
             cout << "3:View the details of a particular student" << endl;
             cout << "4:View all enrolled students for library books" << endl;
             cout << "5:Exit System" << endl;
 
-            cout << "------------------------------" << endl;
+            checkpoint();
             cin >> choice1;
             switch (choice1)
             {
@@ -742,16 +759,16 @@ int main()
             }
             case 2:
             {
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "Processing...." << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 s.edit_student();
                 break;
             }
             case 3:
             {
                 int q;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "Enter the ID of student to view the details" << endl;
                 cin >> q;
                 s.view_student_details(q);
@@ -770,9 +787,9 @@ int main()
             }
             default:
             {
-                cout << "------------------------------" << endl;
+                checkpoint();
                 cout << "Incorrect entry" << endl;
-                cout << "------------------------------" << endl;
+                checkpoint();
                 break;
             }
             }
@@ -780,9 +797,9 @@ int main()
             break;
         }
 //            if (flag == false)
-            {
-                break;
-            }
+//            {
+//                break;
+//            }
 
         case 4:
         {
@@ -792,9 +809,9 @@ int main()
 
         default:
         {
-            cout << "------------------------------" << endl;
+            checkpoint();
             cout << "Incorrect entry" << endl;
-            cout << "------------------------------" << endl;
+            checkpoint();
             break;
         }
         }
