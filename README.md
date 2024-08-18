@@ -17,4 +17,11 @@ The Library Management System is a C++ application designed to streamline the ma
 - **View Book Status:** Enables librarians to check the status of books borrowed by a specific student.
 - **View All Enrolled Students:** Provides a comprehensive list of all enrolled students and their details.
 
-***refer to output.txt file for demonstration of the system***
+## Installation
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/ayanhmm/library-management-system.git
+   cd library-management-system
+
+***refer to output.txt file for demonstration of the system***  
