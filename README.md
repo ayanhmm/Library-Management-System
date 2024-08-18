@@ -23,5 +23,26 @@ The Library Management System is a C++ application designed to streamline the ma
    ```bash
    git clone https://github.com/ayanhmm/library-management-system.git
    cd library-management-system
+## Working Explained via Flow-Charts
+1. **Files and Contents :**
+<img src="./resources/Images/1. files and contents.HEIC" alt="1. files and contents.HEIC" width="350" />
 
-***refer to output.txt file for demonstration of the system***  
+2. **Variables Used :**
+<img src="./resources/Images/2. variables.HEIC" alt="2. variables.HEIC" width="350" />
+
+3. **Main Function Explained :**
+<img src="./resources/Images/3. int main.heic" alt="3. int main.heic" width="350" />
+
+4. **User Actions In First Portal :**
+<img src="./resources/Images/4. actions in main.HEIC" alt="4. actions in main.HEIC" width="350" />
+
+5. **Student Options in Second Portal :**
+<img src="./resources/Images/5. actions in second portal.HEIC" alt="5. actions in second portal.HEIC" width="350" />
+
+6. **Edit Student Class Functions :**
+<img src="./resources/Images/6. edit student.HEIC" alt="6. edit student.HEIC" width="350" />
+
+## Preview:
+***refer to [output.txt](./resources/output.txt) file for a glimse of the working of the system***  
+
+
