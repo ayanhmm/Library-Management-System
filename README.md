@@ -24,6 +24,7 @@ The Library Management System is a C++ application designed to streamline the ma
    git clone https://github.com/ayanhmm/library-management-system.git
    cd library-management-system
 ## Working Explained via Flow-Charts
+Refer here if below images donot load: https://drive.google.com/file/d/1jJOfUOLTt6cROMSF5UnfP_DEoNlD6jE-/view?usp=sharing
 1. **Files and Contents :**
 <img src="./resources/Images/1. files and contents.HEIC" alt="1. files and contents.HEIC" width="350" />
 
